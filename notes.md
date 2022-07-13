@@ -29,7 +29,7 @@
 - Clone repo
 - Install deps
 - Set up MongoDB database
-- To the `.env` file add your `JWT secret` & and the `URI` recieved from MongoDB being sure to replace the password with your password and the app name after the forward slash `.mongodb.net/<appName>`
+- Within the `.env` file add your `JWT secret` & the `URI` recieved from MongoDB being sure to replace the password with your password and the app name after the forward slash `.mongodb.net/<appName>`
 - `npm run server`
 - Bingo
 
