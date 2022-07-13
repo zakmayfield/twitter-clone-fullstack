@@ -189,7 +189,7 @@ router.get('/', getGoals);
 ```env
 # .env
 
-MONGO_URI=mongodb+srv://zaar:zaar@mern-3.iwodxet.mongodb.net/mern-3?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://<user>:<password>@mern-3.iwodxet.mongodb.net/<clusterName>?retryWrites=true&w=majority
 ```
 
 ---
