@@ -1,3 +1,5 @@
+const path = require('path');
+
 //      @step-1     set up the server.js file and call in all of the required imports
 
 //      imports
@@ -14,7 +16,7 @@ connectDB();
 
 //      variables
 const app = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 4000;
 
 //      middleware
 app.use(express.json());
@@ -25,6 +27,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/goals', require('./routes/goalRoutes'));
 //      @step-17a
 app.use('/api/users', require('./routes/userRoutes'));
+
+// server frontend
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+    )
+  );
+}
 
 //    error middleware
 app.use(errorHandler);
