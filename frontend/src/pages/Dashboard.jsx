@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { getTweets } from '../features/tweets/tweetSlice';
 // import TweetForm from '../components/TweetForm';
 // import TweetItem from '../components/TweetItem';
-import TweetLarge from '../components/tweet/TweetLarge';
+// import TweetLarge from '../components/tweet/TweetLarge';
 import MenuDrawer from '../components/menu/MenuDrawer';
 import Recommend from '../components/recommendation/Recommend';
-import { Flex, Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import Feed from '../components/Feed'
 
 const Dashboard = () => {
