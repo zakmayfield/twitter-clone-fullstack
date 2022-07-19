@@ -5,6 +5,8 @@ import FeedTweet from './tweet/FeedTweet';
 
 const Feed = () => {
   const { tweets } = useSelector((state) => state.tweets);
+
+  
   return (
     <Box maxW='xl' minW={{ base: 'sm', lg: 'xl' }}>
       <FeedInput />

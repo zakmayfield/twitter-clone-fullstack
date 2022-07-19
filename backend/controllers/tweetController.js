@@ -8,7 +8,8 @@ const Tweet = require('../model/tweetModel');
 const getTweets = asyncHandler(async (req, res) => {
   //    @step-12a use our Goal model here to call a mongoose method of 'find()' that returns all
   //    @step-25 find all posts by user id
-  const tweets = await Tweet.find({ user: req.user.id });
+  let tweets = await Tweet.find({ user: req.user.id });
+  tweets.reverse();
   res.status(200).json(tweets);
 });
 

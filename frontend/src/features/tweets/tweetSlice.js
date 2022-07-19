@@ -94,7 +94,7 @@ export const tweetSlice = createSlice({
       .addCase(createTweet.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.tweets.push(action.payload);
+        state.tweets.unshift(action.payload);
       })
       .addCase(createTweet.rejected, (state, action) => {
         state.isLoading = false;
