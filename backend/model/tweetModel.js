@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 
 //      define schema with mongoose
-const goalSchema = mongoose.Schema(
+const tweetSchema = mongoose.Schema(
   {
     //    @step-18 add reference to user id to connect tables
     user: {
@@ -12,7 +12,7 @@ const goalSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
-    text: {
+    tweetBody: {
       type: String,
       required: true,
     },
@@ -23,4 +23,4 @@ const goalSchema = mongoose.Schema(
 );
 
 //      export Goal shcema
-module.exports = mongoose.model('Goal', goalSchema);
+module.exports = mongoose.model('Tweet', tweetSchema);

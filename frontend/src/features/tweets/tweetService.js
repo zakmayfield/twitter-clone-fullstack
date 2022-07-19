@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const API_URL = '/api/goals/';
+const API_URL = '/api/tweets/';
 
-const getGoals = async (token) => {
+const getTweets = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -14,19 +14,19 @@ const getGoals = async (token) => {
   return response.data;
 };
 
-const createGoal = async (text, token) => {
+const createTweet = async (tweetBody, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const response = await axios.post(API_URL, text, config);
+  const response = await axios.post(API_URL, tweetBody, config);
 
   return response.data;
 };
 
-const deleteGoal = async (id, token) => {
+const deleteTweet = async (id, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -38,10 +38,10 @@ const deleteGoal = async (id, token) => {
   return response.data;
 };
 
-const goalService = {
-  getGoals,
-  createGoal,
-  deleteGoal,
+const tweetService = {
+  getTweets,
+  createTweet,
+  deleteTweet,
 };
 
-export default goalService;
+export default tweetService;

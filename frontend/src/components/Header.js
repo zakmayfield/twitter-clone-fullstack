@@ -18,7 +18,9 @@ const Header = () => {
     <div>
       <header className='header'>
         <div className='logo'>
-          <Link to='/'>GoalSetter</Link>
+          <Link to='/'>
+            Twitter Clone: login/register will be this until UI update
+          </Link>
         </div>
         <ul>
           {user ? (

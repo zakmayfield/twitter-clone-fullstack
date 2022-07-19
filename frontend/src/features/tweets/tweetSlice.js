@@ -1,20 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import goalService from './goalService';
+import tweetService from './tweetService';
 
 const initialState = {
-  goals: [],
+  tweets: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 };
 
-export const getGoals = createAsyncThunk(
-  'goals/getGoals',
+export const getTweets = createAsyncThunk(
+  'tweets/getTweets',
   async (token, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await goalService.getGoals(token);
+      return await tweetService.getTweets(token);
     } catch (error) {
       const message =
         (error.response &&
@@ -28,12 +28,12 @@ export const getGoals = createAsyncThunk(
   }
 );
 
-export const createGoal = createAsyncThunk(
-  'goals/createGoal',
-  async (text, thunkAPI) => {
+export const createTweet = createAsyncThunk(
+  'tweets/createTweet',
+  async (tweetBody, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await goalService.createGoal(text, token);
+      return await tweetService.createTweet(tweetBody, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -47,12 +47,12 @@ export const createGoal = createAsyncThunk(
   }
 );
 
-export const deleteGoal = createAsyncThunk(
-  'goals/deleteGoal',
+export const deleteTweet = createAsyncThunk(
+  'tweets/deleteTweet',
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await goalService.deleteGoal(id, token);
+      return await tweetService.deleteTweet(id, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -66,52 +66,52 @@ export const deleteGoal = createAsyncThunk(
   }
 );
 
-export const goalSlice = createSlice({
-  name: 'goals',
+export const tweetSlice = createSlice({
+  name: 'tweets',
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getGoals.pending, (state) => {
+      .addCase(getTweets.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getGoals.fulfilled, (state, action) => {
+      .addCase(getTweets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.goals = action.payload;
+        state.tweets = action.payload;
       })
-      .addCase(getGoals.rejected, (state, action) => {
+      .addCase(getTweets.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.goals = [];
+        state.tweets = [];
       })
-      .addCase(createGoal.pending, (state) => {
+      .addCase(createTweet.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createGoal.fulfilled, (state, action) => {
+      .addCase(createTweet.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.goals.push(action.payload);
+        state.tweets.push(action.payload);
       })
-      .addCase(createGoal.rejected, (state, action) => {
+      .addCase(createTweet.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
       })
-      .addCase(deleteGoal.pending, (state) => {
+      .addCase(deleteTweet.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteGoal.fulfilled, (state, action) => {
+      .addCase(deleteTweet.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.goals = state.goals.filter(
-          (goal) => goal._id !== action.payload._id
+        state.tweets = state.tweets.filter(
+          (tweet) => tweet._id !== action.payload._id
         );
       })
-      .addCase(deleteGoal.rejected, (state, action) => {
+      .addCase(deleteTweet.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -119,5 +119,5 @@ export const goalSlice = createSlice({
   },
 });
 
-export const { reset } = goalSlice.actions;
-export default goalSlice.reducer;
+export const { reset } = tweetSlice.actions;
+export default tweetSlice.reducer;

@@ -24,11 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 
 //      routes
 //      @step-4     require the goalRoutes
-app.use('/api/goals', require('./routes/goalRoutes'));
+app.use('/api/tweets', require('./routes/tweetRoutes'));
 //      @step-17a
 app.use('/api/users', require('./routes/userRoutes'));
 
-// server frontend
+// serve frontend
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
   app.get('*', (req, res) =>
@@ -36,6 +36,8 @@ if (process.env.NODE_ENV === 'production') {
       path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
     )
   );
+} else {
+  app.get('/', (req, res) => res.send('Please set to production'));
 }
 
 //    error middleware

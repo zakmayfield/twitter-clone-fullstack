@@ -1,33 +1,33 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createGoal } from '../features/goals/goalSlice';
+import { createTweet } from '../features/tweets/tweetSlice';
 
-const GoalForm = () => {
-  const [text, setText] = useState('');
+const TweetForm = () => {
+  const [tweetBody, setTweetBody] = useState('');
 
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.goals);
+  const { isLoading } = useSelector((state) => state.tweets);
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!isLoading) {
-      dispatch(createGoal({ text }));
+      dispatch(createTweet({ tweetBody }));
     }
-    setText('');
+    setTweetBody('');
   };
 
   return (
     <section className='form'>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='text'>Goal</label>
+          <label htmlFor='tweet'>Tweet</label>
           <input
             type='text'
-            name='text'
-            id='text'
-            value={text}
+            name='tweet'
+            id='tweet'
+            value={tweetBody}
             placeholder='Become a fullstack dev'
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => setTweetBody(e.target.value)}
           />
         </div>
         <div className='form-group'>
@@ -43,4 +43,4 @@ const GoalForm = () => {
   );
 };
 
-export default GoalForm;
+export default TweetForm;
