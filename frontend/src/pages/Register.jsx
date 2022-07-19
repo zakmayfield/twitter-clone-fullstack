@@ -5,6 +5,7 @@ import { FaUser } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { register, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
+import Header from '../components/Header';
 
 const Register = () => {
   // *** I lazy initialized state here so if there problems with form state down the road maybe change this back ***
@@ -66,6 +67,7 @@ const Register = () => {
 
   return (
     <>
+      <Header />
       <section className='heading'>
         <h1>
           <FaUser /> Register
