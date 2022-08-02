@@ -86,10 +86,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
 });
 
 const likeTweet = asyncHandler(async (req, res) => {
-  console.log('req params id', req.params.id);
   let tweet = await Tweet.findById(req.params.id);
-
-  console.log('the tweet?', tweet);
 
   if (!tweet) {
     res.status(400);
@@ -112,8 +109,6 @@ const likeTweet = asyncHandler(async (req, res) => {
       $inc: { numberOfLikes: 1 },
     }
   );
-
-  console.log('new tweet', newTweet);
 
   const tweets = await Tweet.find();
   tweets.reverse();
@@ -138,8 +133,6 @@ const unlikeTweet = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error('Not authorized');
   }
-
-  console.log('success on liketweet controller');
 
   const updatedTweet = await Tweet.findOneAndUpdate(req.params.id, {
     $inc: { numberOfLikes: -1 },

@@ -9,7 +9,6 @@ const FeedTweet = ({ tweet }) => {
   const dispatch = useDispatch();
 
   const tweetLike = () => {
-    // console.log('tweet id', tweet._id);
     dispatch(likeTweet(tweet._id));
   };
 
