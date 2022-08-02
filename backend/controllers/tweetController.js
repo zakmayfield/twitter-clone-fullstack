@@ -4,6 +4,7 @@ const asyncHandler = require('express-async-handler');
 
 //      @step-12    import our goalModel we created in step 11 & use the asyncronous Goal model
 const Tweet = require('../model/tweetModel');
+const User = require('../model/userModel');
 
 const getTweets = asyncHandler(async (req, res) => {
   //    @step-12a use our Goal model here to call a mongoose method of 'find()' that returns all
@@ -12,13 +13,6 @@ const getTweets = asyncHandler(async (req, res) => {
   tweets.reverse();
   res.status(200).json(tweets);
 });
-// const getTweets = asyncHandler(async (req, res) => {
-//   //    @step-12a use our Goal model here to call a mongoose method of 'find()' that returns all
-//   //    @step-25 find all posts by user id
-//   let tweets = await Tweet.find({ user: req.user.id });
-//   tweets.reverse();
-//   res.status(200).json(tweets);
-// });
 
 //    @step-15    adding the rest of the CRUD opperations with validation logic
 const createTweet = asyncHandler(async (req, res) => {
@@ -27,10 +21,13 @@ const createTweet = asyncHandler(async (req, res) => {
     throw new Error('Please add a value');
   }
 
+  const user = await User.findById(req.user.id);
+
   //    @step-24a
   const tweet = await Tweet.create({
     tweetBody: req.body.tweetBody,
     user: req.user.id,
+    author: user.username,
   });
 
   res.status(200).json(tweet);
