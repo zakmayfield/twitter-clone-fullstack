@@ -10,6 +10,8 @@ const {
   createTweet,
   updateTweet,
   deleteTweet,
+  likeTweet,
+  unlikeTweet,
 } = require('../controllers/tweetController');
 
 const { auth } = require('../middleware/authMiddleware');
@@ -17,9 +19,11 @@ const { auth } = require('../middleware/authMiddleware');
 //      create routes for specific endpoints
 //      @step-6a    replace the callback with the controller that handles this i.e. getGoals
 //      @step-16a   replace callbacks with the controller functions i.e. createGoal, updateGoal, deleteGoal
-router.get('/', getTweets);
+router.put('/:id/LikeTweet', auth, likeTweet);
+router.put('/:id/UnlikeTweet', auth, unlikeTweet);
 router.post('/', auth, createTweet);
 router.put('/:id', auth, updateTweet);
 router.delete('/:id', auth, deleteTweet);
+router.get('/', getTweets);
 
 module.exports = router;

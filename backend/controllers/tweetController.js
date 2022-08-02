@@ -28,6 +28,7 @@ const createTweet = asyncHandler(async (req, res) => {
     tweetBody: req.body.tweetBody,
     user: req.user.id,
     author: user.username,
+    numberOfLikes: 0
   });
 
   res.status(200).json(tweet);
@@ -38,7 +39,7 @@ const updateTweet = asyncHandler(async (req, res) => {
   const tweet = await Tweet.findById(req.params.id);
 
   if (!tweet) {
-    req.status(400);
+    res.status(400);
     throw new Error('Cannot find tweet to update');
   }
 
@@ -84,9 +85,63 @@ const deleteTweet = asyncHandler(async (req, res) => {
   res.status(200).json(deletedTweet);
 });
 
+const likeTweet = asyncHandler(async (req, res) => {
+  let tweet = await Tweet.findById(req.params.id);
+
+  if (!tweet) {
+    res.status(400);
+    throw new Error('Cannot find tweet to update');
+  }
+
+  if (!req.user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  if (tweet.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+  
+  const updatedTweet = await Tweet.findOneAndUpdate(req.params.id, {
+    $inc: { numberOfLikes: 1 },
+  });
+
+  res.status(200).json(updatedTweet);
+});
+
+const unlikeTweet = asyncHandler(async (req, res) => {
+  let tweet = await Tweet.findById(req.params.id);
+
+  if (!tweet) {
+    res.status(400);
+    throw new Error('Cannot find tweet to update');
+  }
+
+  if (!req.user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  if (tweet.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  console.log('success on liketweet controller');
+
+  const updatedTweet = await Tweet.findOneAndUpdate(req.params.id, {
+    $inc: { numberOfLikes: -1 },
+  });
+
+  res.status(200).json(updatedTweet);
+})
+
 module.exports = {
   getTweets,
   createTweet,
   updateTweet,
   deleteTweet,
+  likeTweet,
+  unlikeTweet,
 };

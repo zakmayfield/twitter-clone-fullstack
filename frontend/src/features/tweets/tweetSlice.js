@@ -9,6 +9,25 @@ const initialState = {
   message: '',
 };
 
+export const likeTweet = createAsyncThunk(
+  'tweets/likeTweet',
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await tweetService.likeTweet(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const getTweets = createAsyncThunk(
   'tweets/getTweets',
   async (token, thunkAPI) => {
@@ -74,6 +93,7 @@ export const tweetSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // getTweets
       .addCase(getTweets.pending, (state) => {
         state.isLoading = true;
       })
@@ -88,6 +108,7 @@ export const tweetSlice = createSlice({
         state.message = action.payload;
         state.tweets = [];
       })
+      // createTweet
       .addCase(createTweet.pending, (state) => {
         state.isLoading = true;
       })
@@ -101,6 +122,7 @@ export const tweetSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      // deleteTweet
       .addCase(deleteTweet.pending, (state) => {
         state.isLoading = true;
       })
@@ -112,6 +134,19 @@ export const tweetSlice = createSlice({
         );
       })
       .addCase(deleteTweet.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // likeTweet
+      .addCase(likeTweet.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(likeTweet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(likeTweet.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

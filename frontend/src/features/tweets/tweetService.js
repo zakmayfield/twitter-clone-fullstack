@@ -2,6 +2,18 @@ import axios from 'axios';
 
 const API_URL = '/api/tweets/';
 
+const likeTweet = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(`${API_URL}${id}/LikeTweet`, {}, config);
+
+  return response.data;
+};
+
 const getTweets = async (token) => {
   const config = {
     headers: {
@@ -42,6 +54,7 @@ const tweetService = {
   getTweets,
   createTweet,
   deleteTweet,
+  likeTweet,
 };
 
 export default tweetService;
