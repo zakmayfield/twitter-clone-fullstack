@@ -1,24 +1,5 @@
-- Change getTweets route to unprotected so the feed will fetch tweets from all users
-
-- Reorder tweets and show newest on top
-
 - Add icons for tweet feed form
 
 - implement 'liking'
 
-- each tweet has an associated user id with it
-    - i need to render the users username/avatar who posted the tweet
-        - option - make another request for each tweet using that userid
-        - option - send the user data down along with the tweet data 
-        - maybe might be as simple as calling the useSelector hook and rendering the item with that user data, but it might change when i log in again
-
-- when creating a tweet, all tweets should have an author prop on it
-    - {
-        tweetBody: '',
-        user: 1235128279201,
-        author: {
-
-        }
-        OR
-        author: 'authors username'
-    }
+- tweets need to hold the username (which is implemented when creating the tweet) but also we need the tweet to reference the display name (eventually) to have a format like so 'Zak Mayfield @zaarNFT' || '{{display name}} @{{username}}
