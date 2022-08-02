@@ -2,15 +2,14 @@ import { Box, Flex, Avatar, Text, Button, Icon } from '@chakra-ui/react';
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
 import { FaRegComment } from 'react-icons/fa';
 import { FiShare } from 'react-icons/fi';
-// import { useDispatch } from 'react-redux';
-// import { likeTweet } from '../../features/tweets/tweetSlice';
+import { useDispatch } from 'react-redux';
+import { likeTweet } from '../../features/tweets/tweetSlice';
 
 const FeedTweet = ({ tweet }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const likeTweet = () => {
-    console.log('liked tweet', tweet);
-    // dispatch()
+  const tweetLike = () => {
+    dispatch(likeTweet(tweet._id))
   };
 
   return (
@@ -40,7 +39,7 @@ const FeedTweet = ({ tweet }) => {
             <Icon as={AiOutlineRetweet} />
           </Button>
 
-          <Button variant='ghost' display='flex' onClick={likeTweet}>
+          <Button variant='ghost' display='flex' onClick={tweetLike}>
             <Icon as={AiOutlineHeart} />
           </Button>
 
