@@ -28,7 +28,7 @@ const createTweet = asyncHandler(async (req, res) => {
     tweetBody: req.body.tweetBody,
     user: req.user.id,
     author: user.username,
-    numberOfLikes: 0
+    numberOfLikes: 0,
   });
 
   res.status(200).json(tweet);
@@ -86,6 +86,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
 });
 
 const likeTweet = asyncHandler(async (req, res) => {
+  console.log('req params id', req.params.id);
   let tweet = await Tweet.findById(req.params.id);
 
   if (!tweet) {
@@ -102,12 +103,15 @@ const likeTweet = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error('Not authorized');
   }
-  
-  const updatedTweet = await Tweet.findOneAndUpdate(req.params.id, {
+
+  await Tweet.findOneAndUpdate(req.params.id, {
     $inc: { numberOfLikes: 1 },
   });
 
-  res.status(200).json(updatedTweet);
+  const tweets = await Tweet.find();
+  tweets.reverse();
+
+  res.status(200).json(tweets);
 });
 
 const unlikeTweet = asyncHandler(async (req, res) => {
@@ -135,7 +139,7 @@ const unlikeTweet = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json(updatedTweet);
-})
+});
 
 module.exports = {
   getTweets,

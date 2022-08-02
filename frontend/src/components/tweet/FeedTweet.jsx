@@ -9,7 +9,8 @@ const FeedTweet = ({ tweet }) => {
   const dispatch = useDispatch();
 
   const tweetLike = () => {
-    dispatch(likeTweet(tweet._id))
+    // console.log('tweet id', tweet._id);
+    dispatch(likeTweet(tweet._id));
   };
 
   return (
@@ -41,6 +42,7 @@ const FeedTweet = ({ tweet }) => {
 
           <Button variant='ghost' display='flex' onClick={tweetLike}>
             <Icon as={AiOutlineHeart} />
+            {tweet.numberOfLikes}
           </Button>
 
           <Button variant='ghost' display='flex'>
