@@ -17,7 +17,7 @@ const { auth } = require('../middleware/authMiddleware');
 //      create routes for specific endpoints
 //      @step-6a    replace the callback with the controller that handles this i.e. getGoals
 //      @step-16a   replace callbacks with the controller functions i.e. createGoal, updateGoal, deleteGoal
-router.get('/', auth, getTweets);
+router.get('/', getTweets);
 router.post('/', auth, createTweet);
 router.put('/:id', auth, updateTweet);
 router.delete('/:id', auth, deleteTweet);
