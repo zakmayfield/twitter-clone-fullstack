@@ -11,9 +11,9 @@ const FeedTweet = ({ tweet }) => {
       <Box w='100%'>
         <Flex>
           <Text mr='1' fontWeight='bold'>
-            wab.eth
+            {tweet.author}
           </Text>
-          <Text mr='1'>@wabdoteth</Text>
+          <Text mr='1'>{`@${tweet.author}`}</Text>
           <Text>· 3h</Text>
           <Text ml='auto'>···</Text>
         </Flex>

@@ -62,8 +62,6 @@ const MenuDrawer = () => {
     },
   ];
 
-  console.log('user', user);
-
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());

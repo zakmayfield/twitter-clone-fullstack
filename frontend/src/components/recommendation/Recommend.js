@@ -112,7 +112,7 @@ const Recommend = () => {
       {/* Recommendation Footer */}
       <Wrap p='1' px='5' wrap='row'>
         {footerItems.map((content) => (
-          <WrapItemComp children={<Link>{content}</Link>} />
+          <WrapItemComp key={content} children={<Link>{content}</Link>} />
         ))}
       </Wrap>
     </Flex>

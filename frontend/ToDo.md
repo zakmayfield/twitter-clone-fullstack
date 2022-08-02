@@ -11,3 +11,14 @@
         - option - make another request for each tweet using that userid
         - option - send the user data down along with the tweet data 
         - maybe might be as simple as calling the useSelector hook and rendering the item with that user data, but it might change when i log in again
+
+- when creating a tweet, all tweets should have an author prop on it
+    - {
+        tweetBody: '',
+        user: 1235128279201,
+        author: {
+
+        }
+        OR
+        author: 'authors username'
+    }
