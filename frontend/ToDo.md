@@ -26,3 +26,4 @@
 - tweets need to hold the username (which is implemented when creating the tweet) but also we need the tweet to reference the display name (eventually) to have a format like so 'Zak Mayfield @zaarNFT' || '{{display name}} @{{username}}
 
 - BUG when liking tweets it is always targeting the first tweet the user posted
+    - this might have to do with the PUT not having a request body being sent with it?

@@ -89,6 +89,8 @@ const likeTweet = asyncHandler(async (req, res) => {
   console.log('req params id', req.params.id);
   let tweet = await Tweet.findById(req.params.id);
 
+  console.log('the tweet?', tweet);
+
   if (!tweet) {
     res.status(400);
     throw new Error('Cannot find tweet to update');
@@ -99,14 +101,19 @@ const likeTweet = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  if (tweet.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error('Not authorized');
-  }
+  // if (tweet.user.toString() !== req.user.id) {
+  //   res.status(401);
+  //   throw new Error('Not authorized');
+  // }
 
-  await Tweet.findOneAndUpdate(req.params.id, {
-    $inc: { numberOfLikes: 1 },
-  });
+  let newTweet = await Tweet.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      $inc: { numberOfLikes: 1 },
+    }
+  );
+
+  console.log('new tweet', newTweet);
 
   const tweets = await Tweet.find();
   tweets.reverse();
