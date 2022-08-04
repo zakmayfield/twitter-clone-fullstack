@@ -1,6 +1,17 @@
-import { Box, Flex, Avatar, Text, Button, Icon } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Avatar,
+  Text,
+  Button,
+  Icon,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from '@chakra-ui/react';
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
-import { FaRegComment } from 'react-icons/fa';
+import { FaRegComment, FaTrash } from 'react-icons/fa';
 import { FiShare } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { likeTweet } from '../../features/tweets/tweetSlice';
@@ -23,7 +34,14 @@ const FeedTweet = ({ tweet }) => {
           </Text>
           <Text mr='1'>{`@${tweet.author}`}</Text>
           <Text>· 3h</Text>
-          <Text ml='auto'>···</Text>
+          <Box ml='auto' mr='2'>
+            <Menu position='relative'>
+              <MenuButton>...</MenuButton>
+              <MenuList position='absolute' left='-207px' top='-20px'>
+                <MenuItem icon={<FaTrash />}>Delete</MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
         </Flex>
 
         <Box>
