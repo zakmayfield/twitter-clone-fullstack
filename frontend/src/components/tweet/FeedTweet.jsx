@@ -13,14 +13,19 @@ import {
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
 import { FaRegComment, FaTrash } from 'react-icons/fa';
 import { FiShare } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
-import { likeTweet } from '../../features/tweets/tweetSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { likeTweet, deleteTweet } from '../../features/tweets/tweetSlice';
 
 const FeedTweet = ({ tweet }) => {
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const tweetLike = () => {
     dispatch(likeTweet(tweet._id));
+  };
+
+  const tweetDelete = () => {
+    dispatch(deleteTweet(tweet._id));
   };
 
   return (
@@ -38,7 +43,11 @@ const FeedTweet = ({ tweet }) => {
             <Menu position='relative'>
               <MenuButton>...</MenuButton>
               <MenuList position='absolute' left='-207px' top='-20px'>
-                <MenuItem icon={<FaTrash />}>Delete</MenuItem>
+                {tweet?.user === user?._id && (
+                  <MenuItem icon={<FaTrash />} onClick={tweetDelete}>
+                    Delete
+                  </MenuItem>
+                )}
               </MenuList>
             </Menu>
           </Box>

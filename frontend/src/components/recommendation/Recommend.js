@@ -56,7 +56,7 @@ const Recommend = () => {
       </Flex>
 
       {/* Relevant People */}
-      <Box p='3'>
+      <Box p='3' display='none'>
         <Flex flexDir='column' borderWidth='1px' borderRadius='8px' p='2'>
           <Text>Relevant people</Text>
 

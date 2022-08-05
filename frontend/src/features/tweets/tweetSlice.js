@@ -145,13 +145,13 @@ export const tweetSlice = createSlice({
       .addCase(likeTweet.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.tweets = action.payload
+        state.tweets = action.payload;
       })
       .addCase(likeTweet.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
   },
 });
 
