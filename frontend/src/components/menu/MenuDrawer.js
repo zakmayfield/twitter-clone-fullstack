@@ -1,5 +1,21 @@
 import MenuItem from './MenuItem';
 import {
+  Box,
+  Icon,
+  Button,
+  Flex,
+  Avatar,
+  Text,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton
+} from '@chakra-ui/react';
+import {
   AiOutlineHome,
   AiOutlineBell,
   AiOutlineMail,
@@ -8,12 +24,12 @@ import {
 import { CgHashtag, CgMoreO } from 'react-icons/cg';
 import { BsBookmark, BsPerson } from 'react-icons/bs';
 import { FaTwitter, FaFeatherAlt, FaSignOutAlt } from 'react-icons/fa';
-import { Box, Icon, Button, Flex, Avatar, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, reset } from '../../features/auth/authSlice';
 
 const MenuDrawer = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -91,7 +107,7 @@ const MenuDrawer = () => {
       {/* Tweet Button */}
       <Flex align='center' justify='center' my='4'>
         <Button
-          // w='90%'
+          onClick={onOpen}
           borderRightRadius={{ base: '50%', xl: '30px' }}
           borderLeftRadius={{ base: '50%', xl: '30px' }}
           h={{ base: '50px' }}
@@ -105,6 +121,25 @@ const MenuDrawer = () => {
           <Icon display={{ base: 'block', xl: 'none' }} as={FaFeatherAlt} />
         </Button>
       </Flex>
+
+      {/* Tweet Form Modal */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader></ModalHeader>
+          <ModalCloseButton pl='3' left='0' justifyContent='flex-start'/>
+          <ModalBody>
+            Modal
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant='ghost'>Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       {/* Menu Footer */}
       <Flex
