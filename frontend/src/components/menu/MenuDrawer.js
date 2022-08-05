@@ -127,7 +127,7 @@ const MenuDrawer = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader></ModalHeader>
-          <ModalCloseButton pl='3' left='0' justifyContent='flex-start'/>
+          <ModalCloseButton ml='4' left='0' justifyContent='center'/>
           <ModalBody>
             Modal
           </ModalBody>
