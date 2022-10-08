@@ -4,3 +4,6 @@
 
 - Track which tweets the user has liked and display that like as a red heart
     - NEED TO add unlike functionality - this will need to determine if the tweet has already been liked by the user
+
+
+- make chat dialog with an automated person for a messaging system

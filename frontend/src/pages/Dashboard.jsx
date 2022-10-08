@@ -5,7 +5,7 @@ import { getTweets } from '../features/tweets/tweetSlice';
 import MenuDrawer from '../components/menu/MenuDrawer';
 import Recommend from '../components/recommendation/Recommend';
 import { Flex } from '@chakra-ui/react';
-import Feed from '../components/Feed'
+import Feed from '../components/Feed';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <Flex justify='center'>
       <MenuDrawer />
-      <Feed  />
+      <Feed />
       <Recommend />
     </Flex>
   );
