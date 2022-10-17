@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 import { toast } from 'react-toastify';
-import Header from '../components/Header'
+import Header from '../components/Header';
 
 const Login = () => {
   // *** I lazy initialized state here so if there problems with form state down the road maybe change this back ***
@@ -62,10 +62,10 @@ const Login = () => {
     <>
       <Header />
       <section className='heading'>
-        <h1>
-          <FaSignInAlt /> Login
+        <h1 className='header-with-icon'>
+          <FaSignInAlt style={{ marginRight: '1rem' }} /> Login
         </h1>
-        <p>Please login</p>
+        <p>Please use your FAKE password</p>
       </section>
 
       <section className='form'>

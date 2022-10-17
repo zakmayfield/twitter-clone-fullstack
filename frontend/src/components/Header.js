@@ -15,11 +15,11 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <div className='header-container'>
       <header className='header'>
         <div className='logo'>
           <Link to='/'>
-            Twitter Clone: login/register will be this until UI update
+            This is a WIP (Work In Progress). Login / Register are not styled
           </Link>
         </div>
         <ul>

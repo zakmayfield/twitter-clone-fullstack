@@ -69,10 +69,13 @@ const Register = () => {
     <>
       <Header />
       <section className='heading'>
-        <h1>
-          <FaUser /> Register
+        <h1 className='header-with-icon'>
+          <FaUser style={{ marginRight: '1rem' }} /> Register
         </h1>
-        <p>Please create an account</p>
+        <p>Please do NOT use a real password</p>
+        <p style={{ fontSize: '.5em' }}>
+          * passwords are hashed but still use a fake
+        </p>
       </section>
 
       <section className='form'>
